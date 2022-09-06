@@ -6,7 +6,7 @@ import Filter from "./Filter";
 function App() {
   const [dogs, setDogs] = useState([])
   const [selectedDog, setSelectedDog] = useState({})
-  const [goodBoys, setGoodBoys] = useState([])
+  const [goodBoys, setGoodBoys] = useState(false)
 
   useEffect(() => {
     fetch("http://localhost:3001/pups")
@@ -32,18 +32,24 @@ function App() {
     })
   }
 
+  function showGoodBoys() {
+    setGoodBoys(goodDogs => !goodDogs)
+  }
 
   
-  function showGoodBoys() {
-    const allGoodDogs = [...dogs].filter(dog => dog.isGoodDog === true)
-    setGoodBoys(allGoodDogs)
+  let displayDogs = [...dogs].filter(dog => dog.isGoodDog)
+  if (goodBoys) {
+    displayDogs
+  } else {
+    displayDogs = dogs
+  } 
     
-  }
+  
 
   return (
     <div className="App">
-      <Filter showGoodBoys={showGoodBoys} />
-      <DogBar dogs={dogs} handleSummary={handleSummary} />
+      <Filter showGoodBoys={showGoodBoys} goodBoys={goodBoys} />
+      <DogBar dogs={displayDogs} handleSummary={handleSummary} />
       <DogInfo dog={selectedDog} onGoodBoy={handleGoodBoy} />
     </div>
   );
