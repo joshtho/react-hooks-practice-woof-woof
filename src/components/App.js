@@ -36,13 +36,14 @@ function App() {
     setGoodBoys(goodDogs => !goodDogs)
   }
 
-  
-  let displayDogs = [...dogs].filter(dog => dog.isGoodDog)
+  // let displayDogs = dogs;
+  // if (goodDogsOnly) {
+  //   displayDogs = displayDogs.filter((dog) => dog.isGoodDog);
+  // }
+  let displayDogs = dogs
   if (goodBoys) {
-    displayDogs
-  } else {
-    displayDogs = dogs
-  } 
+    displayDogs = [...dogs].filter(dog => dog.isGoodDog)
+  }
     
   
 
