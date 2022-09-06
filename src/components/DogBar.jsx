@@ -2,9 +2,9 @@ import React from 'react'
 
 function DogBar({dogs, handleSummary}) {
   return (
-    <div>
+    <div id='dog-bar'>
         {dogs.map(dog => (
-            <span key={dog.id} id='dog-bar span' onClick={() => handleSummary(dog)} >{dog.name}</span>
+            <span key={dog.id} onClick={() => handleSummary(dog)} >{dog.name}</span>
         ))}
     </div>
   )
