@@ -17,13 +17,7 @@ function App() {
   }
   
   function handleGoodBoy(dog) {
-    fetch(`http://localhost:3001/pups/${dog.id}`, {
-      method: "PATCH",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({isGoodDog: !dog.isGoodDog})
-    })
-    .then(r => r.json())
-    .then(update => {
+     {
      const newDogs = dogs.map(dog => dog.id === update.id ? update : dog)
      console.log(newDogs)
      setDogs(newDogs)
